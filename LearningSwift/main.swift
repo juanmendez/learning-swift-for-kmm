@@ -1,17 +1,10 @@
-let a = 5
-let b = 2
+var a = [ 1, 2, 3, 4, 5, ]
+a.append(7) // wont work with a final a
+a.removeLast()
 
-let myResult = a/b
+// Array<Int>
+print(type(of: a))
 
-print(type(of: myResult))
-
-let myDoubleResult = Double(a/b) // (a/b).toDouble() in Kotlin
-print(type(of: myDoubleResult))
-
-var maybeNil: String?
-
-
-// observe condition has no need for parenthesis
-if maybeNil == nil {
-    print("not defined")
-}
+// declare an empty integer array
+var b : [Int] = []
+b.append(2)
