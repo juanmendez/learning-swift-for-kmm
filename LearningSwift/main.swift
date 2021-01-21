@@ -1,23 +1,17 @@
-import Foundation
+let a = 5
+let b = 2
 
-// initial type without defining the type in the variable
-var playerName = "Ava"
-var editsPermitted = true
-var maximumPixelWidth = 38.4
+let myResult = a/b
 
-// cannot then assign int to a type String
-// playerName = 0
+print(type(of: myResult))
 
-// type annotation
-// in Kotlin we cannot let a var like that we need to describe it as a `lateinit var x`
-var bonusScore: Int
-var environment: String
-var levelCompleted: Bool
-var progress: Double
+let myDoubleResult = Double(a/b) // (a/b).toDouble() in Kotlin
+print(type(of: myDoubleResult))
 
-// final vars are written with let
-let myMessage = "Hello"
+var maybeNil: String?
 
-// Cannot assign to value: 'myMessage' is a 'let' constant
-// myMessage = "Hola"
 
+// observe condition has no need for parenthesis
+if maybeNil == nil {
+    print("not defined")
+}
