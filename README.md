@@ -1,4 +1,7 @@
-# learning-swift-for-kmm
-Learning the basics of the Swift language for proof of concepts using Kotlin Multiplatform Mobile (KMM).
+#Swift Variables
 
-Every new journey begins with learning a programing language. Each learning chapter is going to be stored in its own branch. There is no fanciness in this repo other than running each code through the terminal. I am applying the same technique for these other languages learned int the past: [learning kotlin](https://github.com/juanmendez/learning-kotlin/) or [learning Dart](https://github.com/juanmendez/learning-dart-for-flutter.io/). I look forward to do some comparsison and also mock any of those demos written in Swift. 
+- Even using AppCode, there is a lot of codehint, I don't get to see while writing code in Kotlin or Dart.
+- Data types are not enforced, as the initial value declares the type of the variable. Something also seen in Kotlin
+- Variables are declared in lowerCamelCase
+  - let is val in Kotlin, and final in Dart
+  - var is the same in Kotlin, and Dart  
