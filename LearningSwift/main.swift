@@ -1,56 +1,45 @@
-if 1 < 2 {
-    print("1 is less than 2")
+func showMessage() {
+    print("hello world")
 }
 
-// fall-throughs are not allowed..
-switch 4 {
-case 0:
-    // these two lines can't be written one next to the other
-    print("0")
-    print("zero")
-case 1: print("1")
-case 2: print("2")
-default: print("higher than 2")
+showMessage()
+
+
+// method comes with named args
+// dart: void showMessageWithArgs({Int value})
+// kotlin: fun showMessageWithArgs(value: Int)
+func showMessageWithArgs(value: Int) {
+    print("hello world \(value)")
 }
 
-// loops
-var i = 0;
+showMessageWithArgs(value: 0)
 
-// again no need for enclosing parenthesis
-while i < 4 {
-    i += 1
-    // how to use interpolation in swift?
-    // for dart or kotlin, only replace $ for \
-    print("while loop: \(i)")
+
+/*
+ very interesting, return value works similar the way Kotlin uses the last line as a returning value found in lambdas
+ we could had written, but is unusual
+ func showMessageWithArgs(value: Int) -> Void {
+ */
+func basicFunction() -> Int {
+    0
 }
 
-let values = [0, 1, 2, 3, 4, 5]
+print("returned type \(basicFunction())")
 
-// once again, no need for closing parenthesis.
-// by the way for var loops don't work in swift.
-for value in values {
-    print("for in loop: \(value)")
+
+func returnIf(value: Int) -> Bool {
+    if(value > 0 ) {
+        return true
+    } else {
+        return false
+    }
 }
 
-// 0 to 10
-// CloseRange<Int>
-let rangeValues = 0...10
+print("returned type \(basicFunction())")
 
-for value in rangeValues {
-    print("for in with close range: \(value)")
+
+func greeting(message: String = "Hello World") {
+    print("greeting -> \(message)");
 }
 
-
-// 0 to 9
-// Range<Int>
-let halfOpenValues = 0..<10
-
-for value in halfOpenValues {
-    print("for in with range: \(value)")
-}
-
-
-// what is nice is the code hints, and I  tabbed to move to each parameter
-for value in stride(from: 0, through: 100, by: 5) {
-    print("using a fancy method to loop: \(value)")
-}
+greeting()
