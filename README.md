@@ -1,21 +1,40 @@
-# Swift
+# Funky Functions
 
-Conditions don't require parenthesis
+Regular functions:
 
 ```swift
-if i < 10
-{
-  // block needs brackets if wrapping more than one line
+// TypeReturned can be omitted if is a void function
+func methodName(arg1: Type1, arg2: Type2 ) -> TypeReturned {
+    
+    valueReturned // no need to add return
+}
+
+// invocation
+let valueReturned = methodName(arg1: Value1, arg2: Value2)
+
+// invocation with warning since value returned is not used
+methodName(arg1: Value1, arg2: Value2)
+```
+
+Functions with optional arguments
+
+```swift
+func methodName(arg1: Type1 = defaultValue ){
+    
+} 
+```
+
+Functions returning a closure which is known as lambda in Kotlin
+
+```swift
+func methodName(arg1: Type1) -> (Int) -> Void {
+    // don't know yet how closures work
 }
 ```
 
-Fallthroughs found in switch cases as seen in other c based languages don't work the same way in Swift.
-Here is an alternative
+- Naming functions go along with argument names, so you read it as a whole phrase
 
-we combine with commas
-
-<img width="549" alt="image" src="https://user-images.githubusercontent.com/3371622/105440771-cd714100-5c2c-11eb-8fca-f748b81e1b76.png">
-
-we can also use ranges
-
-<img width="535" alt="image" src="https://user-images.githubusercontent.com/3371622/105440901-0dd0bf00-5c2d-11eb-89ec-093f078ee9b6.png">
+```swift
+type(of: someVariable) 
+// not typeOf(value: someVariable)
+```
