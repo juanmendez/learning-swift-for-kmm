@@ -24,6 +24,10 @@ struct Song {
                 genre: genre ?? self.genre
         )
     }
+
+    func map() -> Dictionary<String, String> {
+        ["title":title, "directory": directory, "releaseYear": String(releaseYear), "genre": genre];
+    }
 }
 
 var jungle = Song(
@@ -41,6 +45,7 @@ var patience = Song(
 )
 
 print("summary \(jungle.summary())")
+print("map \(jungle.map())");
 print("summary \(patience.summary())")
 
 let paradiseCity = jungle.copy(title: "Paradise City")
