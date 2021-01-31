@@ -9,7 +9,7 @@ struct Song {
     }
 
     func map() -> Dictionary<String, String> {
-        ["title": title, "album": album, "releaseYear": String(releaseYear), "genre": genre];
+        ["title": title, "album": album, "releaseYear": String(releaseYear), "genre": genre]
     }
 
     // Swift doesn't come with cloning like Kotlin's data classes and Dart's finalize library
@@ -45,7 +45,7 @@ var patience = Song(
 )
 
 print("summary \(jungle.summary())")
-print("map \(jungle.map())");
+print("map \(jungle.map())")
 print("summary \(patience.summary())")
 
 let map = jungle.map()
