@@ -21,6 +21,13 @@ func copy(title: String? = nil) {
 
 Again, Kotlin makes life easier :)
 
+Here is the formula for writing closures
+```swift
+    { (parameters) -> return type in
+        statements
+    }
+```
+
 # Dictionaries
 
 I have a simple demo but here most of the stuff works similar to Kotlin. I didn't get to see if there is mutable vs immutable map.
