@@ -1,33 +1,21 @@
-# Structs
+# Arc
 
-They are a cheap version of Kotlin data classes.
-You don't have clonable methods like the case of Kotlin's `copy()`
+ARC: Automatic Reference Counting.
+It checks for unused resources, it drops them out of the scope.
+That's when calls deinit() in a given class
 
-iOS developers don't even have an idea how cool Kotlin is in contrast with Swift.
+# Structs vs Classes
+- You can transform easily a struct into a class
+- Classes have init/deinit handlers, Structs don't
+- Classes have inheritance, Structs don't
+- Struct uses value types, so any new assignment makes a copy of the same instance
+- Classes use reference types, so any new assignment has a reference to the same instance
 
-This is allowed in Kotlin, but Swift can't do that
+I was at first disappointed with Structs, but now I can see it is simpler to make a copy by simply making a new assignment.
+I still don't see any new copy with changes in one line like Kotlin's data classes.
 
-```swift
-func copy(newTitle: String = self.title)
-```
-
-I had to do this instead
-
-```swift
-func copy(title: String? = nil) {
-  let newTitle = title ?? self.title
-}
-```
-
-Again, Kotlin makes life easier :)
-
-Here is the formula for writing closures
-```swift
-    { (parameters) -> return type in
-        statements
-    }
-```
-
-# Dictionaries
-
-I have a simple demo but here most of the stuff works similar to Kotlin. I didn't get to see if there is mutable vs immutable map.
+# Swift Classes vs Kotlin Classes
+- In Kotlin the base class is Any, Swift doesn't have a default super inheritance
+- Whereas Kotlin uses inline constructors which allow to call parent class constructor, Swift requires overriding `init()`
+- we define getter/setter variables in Kotlin, and Swift does the same with a different syntax.
+  - Swift doesn't have `field` which is an internal variable for a getter/setter. Instead we can use a separate variable
