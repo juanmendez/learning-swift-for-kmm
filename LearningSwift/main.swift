@@ -1,88 +1,42 @@
-protocol Goofy {
-    var hello: String { get }
-    var name: String { get set }
-    func sayMyName() -> String
+enum ServerError: Error {
+    case noConnection, serverNotFound, authRefused, unknown
 }
 
-class Player: CustomStringConvertible, Goofy {
-    private var _name: String
-
-    init(_ name: String) {
-        _name = name
+func checkStatus(serverNumber: Int) throws -> String {
+    switch serverNumber {
+    case 1:
+        throw ServerError.noConnection
+    case 2:
+        throw ServerError.serverNotFound
+    case 3:
+        throw ServerError.authRefused
+    default:
+        throw ServerError.unknown
     }
 
-    // this is part of CustomStringConvertible
-    var description: String {
-        "description \(_name)"
-    }
-    var hello: String {
-        _name
-    }
-    var name: String {
-        set {
-            _name = newValue
-        }
-
-        get {
-            _name
-        }
-    }
-
-    func sayMyName() -> String {
-        _name
-    }
+    return "Success!"
 }
 
-let player = Player("Juan")
-print(player.description)
-
-player.name = "Jose"
-print(player.hello)
-print(player.sayMyName())
-
-protocol Toggle {
-    // mutating is needed when overriding
-    mutating func toggle()
+// very interesting.. how we don't use try/catch, but do(try)/catch
+do {
+    let result = try checkStatus(serverNumber: 1)
+} catch {
+    print("the problem is \(error)")
 }
 
-enum SwitchEnum: Toggle {
-    case on
-    case off
-
-    // Cannot assign to property: 'self' is immutable; unless, you make it a mutable function
-    // and make sure protocol also address it
-    mutating func toggle() {
-        switch self {
-        case .off:
-            self = .on
-        case .on:
-            self = .off
-        }
-    }
+// based on the type
+do {
+    let result = try checkStatus(serverNumber: 2)
+} catch ServerError.noConnection{
+    print("no connection")
+} catch ServerError.serverNotFound{
+    print("server not found")
+} catch ServerError.authRefused{
+    print("not authenticated")
+} catch {
+    print("the problem is \(error)")
 }
 
-struct SwitchStruct: Toggle {
-    var value: Bool
-
-    // if nothing here was mutating, we could simply start with func even if the protocol addresses it
-    mutating func toggle() {
-        value = !value
-    }
-}
-
-
-/**
- We can tell other references make a new copy. This is quite useful and also simpler than DataClass.copy() in Kotlin
- The only disadvantage is not being able to modify any properties like copy() does.
- */
-var switchEnum = SwitchEnum.off
-var copyOfSwitchEnum = switchEnum
-switchEnum.toggle()
-print("switchEnum \(switchEnum)")
-print("copyOfSwitchEnum \(copyOfSwitchEnum)")
-
-var switchStruct = SwitchStruct(value: true)
-var copyOfSwitchStruct = switchStruct
-switchStruct.toggle()
-print("switchStruct.value \(switchStruct.value)")
-print("copyOfSwitchStruct.value \(copyOfSwitchStruct.value)")
+// you can omit a do/catch by simply assigning try? before the invocation, so if there is an error the result is nil
+let result = try? checkStatus(serverNumber: 3)
+print("result is \(result)")
