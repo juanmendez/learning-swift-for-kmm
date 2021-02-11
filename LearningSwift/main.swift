@@ -43,3 +43,21 @@ func greeting(message: String = "Hello World") {
 }
 
 greeting()
+
+/**
+ In Java/Kotlin/Dart is usual to return in a void method to avoid continuing
+ */
+func processTrack(trackName: String? = nil, artist: String? = nil, duration: Int? = nil) -> String {
+
+    // these don't look like conditions, I don't get it why these assignments work
+    guard let safeTrack = trackName, safeTrack != "Calibre 50", let safeArtist = artist, let safeDuration = duration else {
+        return "one value is missing"
+    }
+
+    return "\(safeTrack) : \(safeArtist) : \(safeDuration)"
+}
+
+print(processTrack())
+print(processTrack(trackName: "Rumores"))
+print(processTrack(trackName: "Rumores", artist: "Joan Sebastian", duration: 180))
+print(processTrack(trackName: "Calibre 50", artist: "Joan Sebastian", duration: 180))
