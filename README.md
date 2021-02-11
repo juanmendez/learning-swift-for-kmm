@@ -1,21 +1,11 @@
-# Arc
+# Protocol
 
-ARC: Automatic Reference Counting.
-It checks for unused resources, it drops them out of the scope.
-That's when calls deinit() in a given class
+In Swift protocols are more emphasized than classes. This is the base of how protocols in the iOS world have rich documentation. 
+Así es como estos cabrones de Apple no permiten que uno vea la fuente del código.
 
-# Structs vs Classes
-- You can transform easily a struct into a class
-- Classes have init/deinit handlers, Structs don't
-- Classes have inheritance, Structs don't
-- Struct uses value types, so any new assignment makes a copy of the same instance
-- Classes use reference types, so any new assignment has a reference to the same instance
+What we have and is also found in Kotlin
 
-I was at first disappointed with Structs, but now I can see it is simpler to make a copy by simply making a new assignment.
-I still don't see any new copy with changes in one line like Kotlin's data classes.
-
-# Swift Classes vs Kotlin Classes
-- In Kotlin the base class is Any, Swift doesn't have a default super inheritance
-- Whereas Kotlin uses inline constructors which allow to call parent class constructor, Swift requires overriding `init()`
-- we define getter/setter variables in Kotlin, and Swift does the same with a different syntax.
-  - Swift doesn't have `field` which is an internal variable for a getter/setter. Instead we can use a separate variable
+- declare getters / setters
+- also base class goes first and then protocols `class MyClass : BaseClass, Protocol0, Protocol1`
+- Structs and Enums make new copies by just being assigned to other variables. This is quite simple, but if we need to
+  emulate Kotlin's `DataClass.copy(att0=0, att1=1)` we could use a `mutating function` to update values.
