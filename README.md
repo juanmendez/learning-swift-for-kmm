@@ -1,21 +1,38 @@
-# Swift
+# Chain of ifs
 
-Conditions don't require parenthesis
+instead of nesting ifs, Swift has flattened multiple conditions.
 
 ```swift
-if i < 10
-{
-  // block needs brackets if wrapping more than one line
+if condition1 {
+    if condition2 {
+        if condition3 {
+            print("do the work")
+        }
+    }
+}
+
+// can be treated as
+if condition1, condition2, condition3 {
+    print("do the work")
 }
 ```
 
-Fallthroughs found in switch cases as seen in other c based languages don't work the same way in Swift.
-Here is an alternative
+anytime there is a variable declared which is not being assigned nil, then that is a successful assignment
 
-we combine with commas
+```swift
+if let safeA = optionalA {
+    print("we can assure safeA is not nil \(safeA)")
+}
+```
 
-<img width="549" alt="image" src="https://user-images.githubusercontent.com/3371622/105440771-cd714100-5c2c-11eb-8fca-f748b81e1b76.png">
+Therefore you can condition to multiple assignments 
 
-we can also use ranges
+```swift
+if let a = optionalA, let b = optionalB, let c = Int("0") {
+    print("a, b, c don't have any nil values")
+} else {
+    print("one variable or many are nil")
+}
+```
 
-<img width="535" alt="image" src="https://user-images.githubusercontent.com/3371622/105440901-0dd0bf00-5c2d-11eb-89ec-093f078ee9b6.png">
+
