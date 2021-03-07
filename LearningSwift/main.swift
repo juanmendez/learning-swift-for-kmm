@@ -5,11 +5,7 @@ class Appliance {
     var model: String = ""
     var voltage: Int = 0
     var capacity: Int?
-
-    init() {
-
-    }
-
+    
     func getDetails() -> String {
         var message = "This is the \(model) from \(manufacturer)."
 
