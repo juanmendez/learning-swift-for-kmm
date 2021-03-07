@@ -8,3 +8,9 @@ print(type(of: a))
 // declare an empty integer array
 var b : [Int] = []
 b.append(2)
+
+// declare an immutable array
+let c : [Int] = []
+
+// cannot use mutating member in an inmutable array
+// c.append(3)
