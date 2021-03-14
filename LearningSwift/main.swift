@@ -1,140 +1,94 @@
-// in Kotlin you need to tell a class can be inheritable with open
-// here all classes are inheritable, unless you declare it with final
-class Appliance {
-    var manufacturer: String = ""
-    var model: String = ""
-    var voltage: Int = 0
-    var capacity: Int?
-
-    init() {
-
-    }
-
-    func getDetails() -> String {
-        var message = "This is the \(model) from \(manufacturer)."
-
-        if voltage == 220 {
-            message += "This model is for European usage."
-        }
-
-        return message
-    }
+protocol Goofy {
+    var hello: String { get }
+    var name: String { get set }
+    func sayMyName() -> String
 }
 
-struct Message {
-    var value: String
-}
+class Player: CustomStringConvertible, Goofy {
+    private var _name: String
 
-// same object reference
-let appliance = Appliance()
-let appliance2 = appliance
-appliance2.manufacturer += "appliance2.update"
-print("\(appliance.manufacturer) \(appliance2.manufacturer)")
-
-// new reference is a new copy
-let message = Message(value: "hello")
-var message2 = message
-message2.value += "update"
-
-print("\(message.value) vs \(message2.value)")
-
-
-// Inheritance
-// in Java the base class of all classes is Object, not in Swift
-class Toaster: Appliance {
-
-    // how you can override init
-    override init() {
-        super.init()
+    init(_ name: String) {
+        _name = name
     }
-}
 
-extension Appliance {
-    func removeSpaces() -> String {
-        getDetails()
+    // this is part of CustomStringConvertible
+    var description: String {
+        "description \(_name)"
     }
-}
-
-let spaces = appliance.removeSpaces()
-
-class Player {
-
-    private var secretLives: Int = 0
-    var name: String
-
-
-    /**
-     Here is a getter/setter. Where as we can use field to store value
-     in here we didn't have such choice but to use a private variable to do that.
-      As always this makes no sense but is just for showing how it works in Swift
-     */
-    var livesRemaining: Int {
+    var hello: String {
+        _name
+    }
+    var name: String {
         set {
-            print("livesRemaining new value \(newValue)")
-            secretLives = newValue
+            _name = newValue
         }
 
         get {
-            print("livesRemaining getter \(secretLives)")
-            return secretLives
-        }
-    }
-    var enemiesDestroyed: Int
-    var penalty: Int
-    var bonus: Int {
-        willSet {
-            print("Bonus -> next value is \(newValue)")
-        }
-
-        didSet {
-            print("Bonus <- value place \(oldValue)")
+            _name
         }
     }
 
-    // long
-    /*var score: Int {
+    var nameReadOnly : String {
         get {
-            let destroyed = enemiesDestroyed * 1000
-            let lives = livesRemaining * 5000
-
-            return destroyed + bonus + lives
+            _name;
         }
-    }*/
-
-    // short
-    var score : Int {
-        let destroyed = enemiesDestroyed * 1000
-        let lives = livesRemaining * 5000
-
-        return destroyed + bonus + lives
     }
 
-    init(_ _name: String) {
-        name = _name
+    func sayMyName() -> String {
+        _name
+    }
+}
 
-        // interesting, within the class I couldn't do this assigment
-        //livesRemaining = 3
-        secretLives = 3
-        enemiesDestroyed = 0
-        penalty = 0
-        bonus = 0
+let player = Player("Juan")
+print(player.description)
+
+player.name = "Jose"
+print(player.hello)
+print(player.sayMyName())
+
+protocol Toggle {
+    // mutating is needed when overriding
+    mutating func toggle()
+}
+
+enum SwitchEnum: Toggle {
+    case on
+    case off
+
+    // Cannot assign to property: 'self' is immutable; unless, you make it a mutable function
+    // and make sure protocol also address it
+    mutating func toggle() {
+        switch self {
+        case .off:
+            self = .on
+        case .on:
+            self = .off
+        }
+    }
+}
+
+struct SwitchStruct: Toggle {
+    var value: Bool
+
+    // if nothing here was mutating, we could simply start with func even if the protocol addresses it
+    mutating func toggle() {
+        value = !value
     }
 }
 
 
-let player = Player.init("Juan")
-print("Juan's score \(player.score)")
+/**
+ We can tell other references make a new copy. This is quite useful and also simpler than DataClass.copy() in Kotlin
+ The only disadvantage is not being able to modify any properties like copy() does.
+ */
+var switchEnum = SwitchEnum.off
+var copyOfSwitchEnum = switchEnum
+switchEnum.toggle()
+print("switchEnum \(switchEnum)")
+print("copyOfSwitchEnum \(copyOfSwitchEnum)")
 
-// Cannot assign to property: 'score' is a get-only property
-//player.score = 3
-
-
-// on purpose we are using a getter and setter
-//livesRemaining getter 3
-//livesRemaining new value 6
-player.livesRemaining += 3
-
-// prints
-// Bonus -> next value is 1
-// Bonus <- value place 0
-player.bonus = 1
+var switchStruct = SwitchStruct(value: true)
+var copyOfSwitchStruct = switchStruct
+switchStruct.toggle()
+print("switchStruct.value \(switchStruct.value)")
+print("copyOfSwitchStruct.value \(copyOfSwitchStruct.value)")
