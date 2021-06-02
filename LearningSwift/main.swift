@@ -1,56 +1,31 @@
-if 1 < 2 {
-    print("1 is less than 2")
+// assignment condition
+// whenever there is an assignment and it works, then it is treated as true
+if let a = Int("0") {
+    print("conversion from string to int worked")
 }
 
-// fall-throughs are not allowed..
-switch 4 {
-case 0:
-    // these two lines can't be written one next to the other
-    print("0")
-    print("zero")
-case 1: print("1")
-case 2: print("2")
-default: print("higher than 2")
+if let b = Int("s") {
+    print("conversion from string to int worked")
+} else {
+    print("this conversion doesn't work")
 }
 
-// loops
-var i = 0;
+// a chain of conditions
+/**
+ if let c = Int("0") {
+    if let d = Int("1") {
+        if 1 == 1 {
+         }
+    }
+ }
+ */
 
-// again no need for enclosing parenthesis
-while i < 4 {
-    i += 1
-    // how to use interpolation in swift?
-    // for dart or kotlin, only replace $ for \
-    print("while loop: \(i)")
-}
+var d: String?
+d = "1"
 
-let values = [0, 1, 2, 3, 4, 5]
-
-// once again, no need for closing parenthesis.
-// by the way for var loops don't work in swift.
-for value in values {
-    print("for in loop: \(value)")
-}
-
-// 0 to 10
-// CloseRange<Int>
-let rangeValues = 0...10
-
-for value in rangeValues {
-    print("for in with close range: \(value)")
-}
-
-
-// 0 to 9
-// Range<Int>
-let halfOpenValues = 0..<10
-
-for value in halfOpenValues {
-    print("for in with range: \(value)")
-}
-
-
-// what is nice is the code hints, and I  tabbed to move to each parameter
-for value in stride(from: 0, through: 100, by: 5) {
-    print("using a fancy method to loop: \(value)")
+if let c = Int("0"), let safeD = d, 1 == 1 {
+    print("this chain of conditions works \(c) \(safeD)")
+} else {
+    // this gets executed if d is null, or nil.
+    print("this chain of conditions doesn't work")
 }
