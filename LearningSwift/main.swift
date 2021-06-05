@@ -15,3 +15,24 @@ var maybeNil: String?
 if maybeNil == nil {
     print("not defined")
 }
+
+
+// casting
+let doubleGold = 5.832
+let intGold = Int(doubleGold)
+let stringGold = String(doubleGold)
+let mixedGold = doubleGold + Double(intGold) // ensure integer is double
+
+print("converted values \(doubleGold) \(intGold) \(stringGold) \(mixedGold)")
+
+var isActive = false
+isActive = !isActive
+print("value must be true \(isActive)")
+
+func isStringEven(value: String) -> Bool {
+    value.count % 2 == 0
+}
+
+var unknown: String?
+unknown = "5678"
+print(isStringEven(value: unknown ?? "1234"))
