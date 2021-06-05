@@ -1,21 +1,19 @@
-// here a: List<Int> is declared a: [Int] or Array<Int>
-var a: Array<Int> = [ 1, 2, 3, 4, 5, ]
-a.append(7) // wont work with a final a
-a.removeLast()
+// Swift Turples save multiple values in one variable
+let upperCutAttack: (String, Int, Bool) = ("String", 1, true)
+print(upperCutAttack.0)
+print(upperCutAttack.1)
+print(upperCutAttack.2)
 
-a += [ 6, 7, 8, 9,]
 
-print(a)
+//name your "keys"
+let (attack, damage, rechargeable) = ("String", 1, true)
+print(attack)
+print(damage)
+print(rechargeable)
 
-// Array<Int>
-print(type(of: a))
+// associate those "keys" into a variable
+let lowerAttack: (attack: String, damage: Int, rechargeable: Bool) = ("String", 1, true)
+print(lowerAttack.attack)
+print(lowerAttack.damage)
+print(lowerAttack.rechargeable)
 
-// declare an empty integer array
-var b : [Int] = []
-b.append(2)
-
-// declare an immutable array
-let c : [Int] = []
-
-// cannot use mutating member in an inmutable array
-// c.append(3)
