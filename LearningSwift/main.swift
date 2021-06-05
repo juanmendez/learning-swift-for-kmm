@@ -21,3 +21,7 @@ let myMessage = "Hello"
 // Cannot assign to value: 'myMessage' is a 'let' constant
 // myMessage = "Hola"
 
+
+// concatenation
+let hiAva = myMessage + " " + playerName
+print(hiAva)
