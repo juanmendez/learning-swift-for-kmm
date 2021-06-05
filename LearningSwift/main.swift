@@ -4,13 +4,13 @@ if 1 < 2 {
 
 // fall-throughs are not allowed..
 switch 4 {
-case 0:
-    // these two lines can't be written one next to the other
-    print("0")
-    print("zero")
-case 1: print("1")
-case 2: print("2")
-default: print("higher than 2")
+    case 0:
+        // these two lines can't be written one next to the other
+        print("0")
+        print("zero")
+    case 1: print("1")
+    case 2: print("2")
+    default: print("higher than 2")
 }
 
 // loops
@@ -53,4 +53,32 @@ for value in halfOpenValues {
 // what is nice is the code hints, and I  tabbed to move to each parameter
 for value in stride(from: 0, through: 100, by: 5) {
     print("using a fancy method to loop: \(value)")
+}
+
+func isNullWhenItsOdd(value: Int? = nil) -> Int?{
+    // this is like having an if condition checking is not null, to then assign it to another variable
+    guard let safeValue = value else {
+        return nil;
+    }
+
+    if safeValue % 2 == 0 {
+        return value
+    }
+
+    return nil;
+}
+
+print("is it even \(String(describing: isNullWhenItsOdd(value: 2)))")
+
+// when value assigned assigned is not null, then condition is true
+if let asNil = isNullWhenItsOdd() {
+    print("value is even \(asNil)")
+}
+
+if let asNil = isNullWhenItsOdd(value: 3) {
+    print("value is even \(asNil)")
+}
+
+if let asInt = isNullWhenItsOdd(value: 2) {
+    print("value is even \(asInt)")
 }
