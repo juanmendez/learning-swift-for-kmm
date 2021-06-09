@@ -50,6 +50,7 @@ greeting()
 func processTrack(trackName: String? = nil, artist: String? = nil, duration: Int? = nil) -> String {
 
     // these don't look like conditions, I don't get it why these assignments work
+    // we can use guards even in loops, where we can continue, break with return, or throw an error
     guard let safeTrack = trackName, safeTrack != "Calibre 50", let safeArtist = artist, let safeDuration = duration else {
         return "one value is missing"
     }
@@ -61,3 +62,25 @@ print(processTrack())
 print(processTrack(trackName: "Rumores"))
 print(processTrack(trackName: "Rumores", artist: "Joan Sebastian", duration: 180))
 print(processTrack(trackName: "Calibre 50", artist: "Joan Sebastian", duration: 180))
+
+/**
+ Closure Expression Syntax
+
+Closure expression syntax has the following general form:
+
+    { (parameters) -> return type in
+        statements
+    }
+**/
+
+let funkyTown = { (a: String) -> String in
+   "hello \(a)"
+}
+
+print(funkyTown("and go to Funky Town!"))
+
+func handleTown(town: String, fun :(String) -> String) -> String {
+    "handling {\(fun(town))}"
+}
+
+print(handleTown(town: "Funky Town", fun: funkyTown) );
