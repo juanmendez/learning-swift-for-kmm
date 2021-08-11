@@ -73,15 +73,22 @@ class Adventurer: CustomStringConvertible {
     }
 }
 
-var adventurer = Adventurer.init(name: "Juan")
-print(adventurer)
+class Ranger: Adventurer {
+    var classAdvantage: String
 
-adventurer = Adventurer.init(maxHealth: 100)
-print(adventurer)
+    init(name: String, maxHealth: Int, classAdvantage: String) {
+        self.classAdvantage = classAdvantage
+        super.init(name: name, maxHealth: maxHealth)
+    }
 
-adventurer.healthLost = 50
+    convenience init(advantage: String) {
+        self.init(name: "", maxHealth: 100, classAdvantage: advantage)
+    }
 
-print(Adventurer.credo)
+    override var description: String {
+        "\(super.description), ranger: \(classAdvantage)"
+    }
+}
 
-Adventurer.message = "Hello World"
-print(Adventurer.message ?? "there is no message")
+let ranger = Ranger.init(advantage: "Advantage")
+print(ranger)
