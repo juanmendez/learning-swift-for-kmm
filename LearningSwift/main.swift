@@ -1,136 +1,87 @@
-// in Kotlin you need to tell a class can be inheritable with open
-// here all classes are inheritable, unless you declare it with final
-class Appliance {
-    var manufacturer: String = ""
-    var model: String = ""
-    var voltage: Int = 0
-    var capacity: Int?
-    
-    func getDetails() -> String {
-        var message = "This is the \(model) from \(manufacturer)."
+/**
+ to understand description check
+ https://stackoverflow.com/a/36587136/2184088
+ */
+class Adventurer: CustomStringConvertible {
+    // key modifier is internal by default, so it can be accessed within file
+    // use private just like in Kotlin or Java. Dart uses underscore prefix
+    // also use public like those other languages. Dart key modifier is public by default
+    private let name: String
+    var maxHealth: Int
+    var specialMove: String?
 
-        if voltage == 220 {
-            message += "This model is for European usage."
+    // Kotlin can declare a constructor inlined with class declaration
+    init(name: String, maxHealth: Int) {
+        self.name = name
+        self.maxHealth = maxHealth
+    }
+
+    // getter/setter in Swift
+    var healthLost: Int {
+        /**
+         if you don't need a setter then simply
+          return what's in get without its clause
+         */
+        get {
+            maxHealth - 50
         }
-
-        return message
-    }
-}
-
-struct Message {
-    var value: String
-}
-
-// same object reference
-let appliance = Appliance()
-let appliance2 = appliance
-appliance2.manufacturer += "appliance2.update"
-print("\(appliance.manufacturer) \(appliance2.manufacturer)")
-
-// new reference is a new copy
-let message = Message(value: "hello")
-var message2 = message
-message2.value += "update"
-
-print("\(message.value) vs \(message2.value)")
-
-
-// Inheritance
-// in Java the base class of all classes is Object, not in Swift
-class Toaster: Appliance {
-
-    // how you can override init
-    override init() {
-        super.init()
-    }
-}
-
-extension Appliance {
-    func removeSpaces() -> String {
-        getDetails()
-    }
-}
-
-let spaces = appliance.removeSpaces()
-
-class Player {
-
-    private var secretLives: Int = 0
-    var name: String
-
-
-    /**
-     Here is a getter/setter. Where as we can use field to store value
-     in here we didn't have such choice but to use a private variable to do that.
-      As always this makes no sense but is just for showing how it works in Swift
-     */
-    var livesRemaining: Int {
         set {
-            print("livesRemaining new value \(newValue)")
-            secretLives = newValue
+            maxHealth = newValue
         }
+    }
 
+    /** getter/setter in Kotlin
+        var stringRepresentation: String
+        get() = maxHealth - 50
+         set(newValue) {
+            maxHealth = newValue
+        }
+     */
+
+
+    /// if Kotlin uses companion object, and java uses static methods and vars
+    /// Swift uses internal classes to achieve the same
+    class var credo: String {
+        "Life is right here, right now"
+    }
+
+
+    private static var _message: String?
+
+    /// so message works similar to getter/setter healthLost
+    class var message: String? {
         get {
-            print("livesRemaining getter \(secretLives)")
-            return secretLives
+            _message
         }
-    }
-    var enemiesDestroyed: Int
-    var penalty: Int
-    var bonus: Int {
-        willSet {
-            print("Bonus -> next value is \(newValue)")
-        }
-
-        didSet {
-            print("Bonus <- value place \(oldValue)")
+        set {
+            _message = newValue
         }
     }
 
-    // long
-    /*var score: Int {
-        get {
-            let destroyed = enemiesDestroyed * 1000
-            let lives = livesRemaining * 5000
-
-            return destroyed + bonus + lives
-        }
-    }*/
-
-    // short
-    var score : Int {
-        let destroyed = enemiesDestroyed * 1000
-        let lives = livesRemaining * 5000
-
-        return destroyed + bonus + lives
+    // they work similarly to factories in Dart
+    convenience init(name: String) {
+        self.init(name: name, maxHealth: 100)
     }
 
-    init(_ _name: String) {
-        name = _name
+    // they work similarly to factories in Dart
+    convenience init(maxHealth: Int) {
+        self.init(name: "", maxHealth: maxHealth)
+    }
 
-        // interesting, within the class I couldn't do this assigment
-        //livesRemaining = 3
-        secretLives = 3
-        enemiesDestroyed = 0
-        penalty = 0
-        bonus = 0
+    var description: String {
+        "Adventurer name: \(name) max-health: \(maxHealth)"
     }
 }
 
+var adventurer = Adventurer.init(name: "Juan")
+print(adventurer)
 
-let player = Player.init("Juan")
-print("Juan's score \(player.score)")
+adventurer = Adventurer.init(maxHealth: 100)
+print(adventurer)
 
-// Cannot assign to property: 'score' is a get-only property
-//player.score = 3
+adventurer.healthLost = 50
 
+print(Adventurer.credo)
 
-// on purpose we are using a getter and setter
-//livesRemaining getter 3
-//livesRemaining new value 6
-player.livesRemaining += 3
-
-// prints
-// Bonus -> next value is 1
-// Bonus <- value place 0
-player.bonus = 1
+Adventurer.message = "Hello World"
+print(Adventurer.message ?? "there is no message")
