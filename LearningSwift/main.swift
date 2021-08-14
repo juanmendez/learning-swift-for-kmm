@@ -29,3 +29,14 @@ if let c = Int("0"), let safeD = d, 1 == 1 {
     // this gets executed if d is null, or nil.
     print("this chain of conditions doesn't work")
 }
+
+var f: String? = "F"
+
+if let ff = f {
+    // notice that ff can be available in here already
+    // as this is part of the scpe, try to get ff after the condition
+    // and the compiler will mention ff is ot of scope
+    print("f is found \(ff)")
+} else {
+    print("f is not found")
+}
