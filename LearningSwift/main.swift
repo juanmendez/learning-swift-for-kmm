@@ -16,3 +16,13 @@ let myOwnKindBurrito = Burrito.bowl
 
 print("type \(myOwnKindBurrito)")
 print("value \(myOwnKindBurrito.rawValue)")
+
+
+switch myOwnKindBurrito {
+case .king:
+    print("eating like a king: \(myOwnKindBurrito.rawValue)")
+case .regular:
+    print("eating normal: \(myOwnKindBurrito.rawValue)")
+default:
+    print("quit making diets: \(myOwnKindBurrito.rawValue)")
+}
