@@ -4,13 +4,13 @@ if 1 < 2 {
 
 // fall-throughs are not allowed..
 switch 4 {
-    case 0:
-        // these two lines can't be written one next to the other
-        print("0")
-        print("zero")
-    case 1: print("1")
-    case 2: print("2")
-    default: print("higher than 2")
+case 0:
+    // these two lines can't be written one next to the other
+    print("0")
+    print("zero")
+case 1: print("1")
+case 2: print("2")
+default: print("higher than 2")
 }
 
 // loops
@@ -55,7 +55,7 @@ for value in stride(from: 0, through: 100, by: 5) {
     print("using a fancy method to loop: \(value)")
 }
 
-func isNullWhenItsOdd(value: Int? = nil) -> Int?{
+func isNullWhenItsOdd(value: Int? = nil) -> Int? {
     // this is like having an if condition checking is not null, to then assign it to another variable
     guard let safeValue = value else {
         return nil;
