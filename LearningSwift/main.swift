@@ -24,14 +24,15 @@ do {
     print("the problem is \(error)")
 }
 
-// based on the type
+// based on the enum type
+// if we were to catch by data type then we would use instead `catch is DataTypeError`
 do {
     let result = try checkStatus(serverNumber: 2)
-} catch ServerError.noConnection{
+} catch ServerError.noConnection {
     print("no connection")
-} catch ServerError.serverNotFound{
+} catch ServerError.serverNotFound {
     print("server not found")
-} catch ServerError.authRefused{
+} catch ServerError.authRefused {
     print("not authenticated")
 } catch {
     print("the problem is \(error)")
@@ -40,3 +41,30 @@ do {
 // you can omit a do/catch by simply assigning try? before the invocation, so if there is an error the result is nil
 let result = try? checkStatus(serverNumber: 3)
 print("result is \(result)")
+
+
+enum ActionError: Error {
+    case InsufficientMP, OutOfRange, UnknownError
+}
+
+func attackEnemy(mp: Int, distance: Double) throws -> Bool {
+    guard mp > 10 else {
+        throw ActionError.InsufficientMP
+    }
+
+    guard distance < 5.89 else {
+        throw ActionError.OutOfRange
+    }
+
+    return true
+}
+
+do {
+    if let attackSuccess = try? attackEnemy(mp: 11, distance: 4) {
+        print("Attach success: \(attackSuccess)")
+    }
+} catch ActionError.InsufficientMP {
+    print("insufficient")
+} catch ActionError.OutOfRange {
+    print("out of range")
+}
