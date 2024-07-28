@@ -2,6 +2,7 @@
 <playground version='6.0' target-platform='macos' buildActiveScheme='true' executeOnSourceChanges='true' importAppTypes='true'>
     <pages>
         <page name='00.initial'/>
-        <page name='02.collections'/>
+        <page name='01.collections'/>
+        <page name='02.control_flow'/>
     </pages>
 </playground>
