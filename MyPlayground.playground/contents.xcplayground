@@ -2,7 +2,15 @@
 <playground version='6.0' target-platform='macos' buildActiveScheme='true' executeOnSourceChanges='true' importAppTypes='true'>
     <pages>
         <page name='00.initial'/>
-        <page name='01.collections'/>
         <page name='02.control_flow'/>
+        <page name='03.closures'/>
+        <page name='04.enumerations'/>
+        <page name='05.structs'/>
+        <page name='06.properties'/>
+        <page name='07.methods'/>
+        <page name='08.inheritance'/>
+        <page name='09.protocol'/>
+        <page name='10.optional-chaining'/>
+        <page name='11.error-handling'/>
     </pages>
 </playground>
