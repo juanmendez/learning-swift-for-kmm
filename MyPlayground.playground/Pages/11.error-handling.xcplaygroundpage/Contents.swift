@@ -7,8 +7,13 @@ enum StringError: Error {
     case blankString
 }
 
-
-func canThrowErrors(value: String) throws -> String {
+// we don't have to be explicit as Error must be the base class, but in other cases
+// as the method below we can acknowledge what type it is.
+func canThrowErrors(value: String) throws (any Error) -> String {
+    defer {
+        print("maintance work after throwing or completing function exception")
+    }
+    
     if value.isEmpty {
         throw StringError.emptyString("Empty string")
     } else if value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -18,7 +23,7 @@ func canThrowErrors(value: String) throws -> String {
     }
 }
 
-func throwWithGuard(_ value: String) throws -> String {
+func throwWithGuard(_ value: String) throws (StringError) -> String {
     guard !value.isEmpty else {
         throw StringError.emptyString("Empty string")
     }
@@ -44,6 +49,8 @@ if(error == nil) {
     print("shortcut to assign a default value in case of an exception")
 }
 
+let errorRescuer = (try? throwWithGuard("")) ?? "default value"
+print("errorRescuer is \(errorRescuer)")
 
 // notice this is a long way to do the same
 let result: String?
@@ -101,4 +108,18 @@ do {
     print("string is blank to be capitalized")
 } catch {
     print("unexpected error: \(error)")
+}
+
+// how to handle returning error instead of throwing it.
+
+func dontThrowReturnError(_ value: String) -> Result<String, StringError> {
+    do {
+        try throwWithGuard(value)
+    } catch StringError.emptyString(let message) {
+        return .failure(StringError.emptyString(message))
+    } catch {
+        
+    }
+        
+    return .success("great job!")
 }
