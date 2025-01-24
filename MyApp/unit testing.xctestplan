@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "E9032668-27F8-4D69-BC1F-2AAE1FCFADA0",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MyApp.xcodeproj",
+        "identifier" : "5FADFF702D35FD8C00A68BF7",
+        "name" : "unit testing"
+      }
+    }
+  ],
+  "version" : 1
+}

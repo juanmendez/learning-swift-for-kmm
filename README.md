@@ -1,6 +1,12 @@
-# learning-swift-for-kmm
-Learning the basics of the Swift language for proof of concepts using Kotlin Multiplatform Mobile (KMM).
+# Unit Tests for iOS
 
-Every new journey begins with learning a programing language. Each learning chapter is going to be stored in its own branch. There is no fanciness in this repo other than running each code through the terminal. I am applying the same technique for these other languages learned int the past: [learning kotlin](https://github.com/juanmendez/learning-kotlin/) or [learning Dart](https://github.com/juanmendez/learning-dart-for-flutter.io/). I look forward to do some comparsison and also mock any of those demos written in Swift. 
+This is very simple and basic knowledge and practice of XCTest. 
+I find this library very basic compared to Mockito or Mockk. 
+I was surprised how to make a test run in isolation the method needs to be prefixed as `test`.
 
-You can learn Swift from this course by Simon Allardice [Swift Fundamentals](https://app.pluralsight.com/library/courses/swift3-fundamentals)
+In this branch I also tried to do the exercise in Fleet. It is a nice IDE but not as great as AppCode.
+I also find XCode at times buggy. What a dissapointment compared to IDEs created by JetBrains.
+
+In my technology journeys I try to first learn the language to then start writing unit tests so I can practice the language in mind.
+This is the case I am still learning how to try/catch in Swift. I still believe Kotlin is far more stylish than Swift.
+:)
