@@ -1,5 +1,5 @@
 //
-//  unit_testing.swift
+//  XCTest101,swift
 //  unit testing
 //
 //  Created by Mendez, Juan on 1/13/25.
@@ -8,9 +8,9 @@
 import XCTest
 import Testing
 
-final class Testing101: XCTestCase {
+final class XCTest101: XCTestCase {
     override func setUp() async throws {
-
+        print("onBefore")
     }
 
     func testMeDear() {
@@ -45,8 +45,9 @@ final class Testing101: XCTestCase {
         "By the Lake",
         "Camping in the Woods"
     ])
-    func testFunPlaces(videoName: String) async throws {
-        assert(!videoName.isEmpty)
+    func testFunPlaces(myFunPlace: String) async throws {
+        assert(!myFunPlace.isEmpty) // assert in XCTest
+        #expect(myFunPlace.isEmpty == false) // same but written in Swift Testing
     }
 
     func testGreaterThan() async throws {
@@ -54,6 +55,6 @@ final class Testing101: XCTestCase {
     }
 
     override func tearDown() async throws {
-
+        print("onAfter")
     }
 }
